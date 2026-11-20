@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="#c9a44a" stroke-width="1" opacity="0.5">
+  <!-- 8-point star (khatam) lattice, drawn for Mehal -->
+  <path d="M60 18 L72 48 L102 60 L72 72 L60 102 L48 72 L18 60 L48 48 Z"/>
+  <path d="M30.3 30.3 L60 42.6 L89.7 30.3 L77.4 60 L89.7 89.7 L60 77.4 L30.3 89.7 L42.6 60 Z"/>
+  <path d="M0 0 L18 0 M0 0 L0 18 M120 0 L102 0 M120 0 L120 18 M0 120 L18 120 M0 120 L0 102 M120 120 L102 120 M120 120 L120 102"/>
+  <circle cx="60" cy="60" r="6"/>
+</svg>

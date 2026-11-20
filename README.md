@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mehal Furniture
 
-## Getting Started
+Website and custom-furniture design app for Mehal Furniture, Adyala Road, Rawalpindi.
+Everything runs on free tools: no paid APIs, no paid 3D models, no accounts needed.
 
-First, run the development server:
+## What's in it
+
+| Page | What it does |
+|---|---|
+| `/` | Home: arch hero, ways to start, featured pieces, materials, how ordering works, showroom |
+| `/collection` | Every piece, filterable by category |
+| `/pieces/[slug]` | Photos, description, "what it's made of", customise / restyle / ask on WhatsApp |
+| `/studio` | 3D designer for sofas, beds and tables: shape, legs, fabric, colour, pattern, "see it in your room" (AR) |
+| `/restyle` | Upload a photo, tap the sofa, try new fabric/colour/pattern (AI runs on the customer's phone) |
+| `/admin` | Owner: add/edit pieces from a phone, see customers' designs and mark their progress |
+
+Every design ends with **"Send this design on WhatsApp"**: the design is saved for the owner and
+WhatsApp opens with every choice written out, sent to 0335-5936102.
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Owner login is at `/admin`. Set `ADMIN_PASSWORD` in `.env.local` (see `.env.example`); until then
+the temporary password is `mehal-admin`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where data lives
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The catalogue and customer designs are in `data/db.json`, uploaded photos in `data/uploads/`
+(both git-ignored, created on first run with ten sample pieces). Back up that folder. The sample
+pieces use free Pexels photos and are marked "Sample" in the admin; replace them with real photos.
 
-## Learn More
+Because data is kept on disk, host it somewhere with a persistent disk (a VPS such as the
+existing Contabo server: `npm run build && npm start` behind a reverse proxy). Serverless hosts
+like Vercel would lose uploads; switching `src/lib/store.ts` to Supabase's free tier fixes that.
 
-To learn more about Next.js, take a look at the following resources:
+## Free tools used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js 16, React 19, Tailwind 4
+- 3D: three.js, React Three Fiber, drei. All furniture and fabric textures are generated in code.
+- AR: Google `<model-viewer>` (loaded from jsDelivr when the customer taps "See it in your room")
+- Photo restyle: SlimSAM via transformers.js, downloaded from Hugging Face to the customer's browser
+- Motion: GSAP (free, incl. SplitText, DrawSVG, Flip), Lenis smooth scroll; arch curtain page transitions; two pieces adapted from 21st.dev (Image Reveal, Disc Reveal List)
+- Fonts: Gambarino + General Sans (Fontshare, ITF Free Font Licence), Gulzar for Urdu (Google Fonts, OFL)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Research behind these choices: `docs/reports/Mehal Furniture app research.md`.

@@ -1,26 +1,190 @@
 @import "tailwindcss";
 
+/* Mehal palette, taken from the showroom: bottle-green arches, mustard walls,
+   gold hardware and cream upholstery. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --emerald: #0f3d2e;
+  --night: #0a2a20;
+  --moss: #2f5d4a;
+  --gold: #c9a44a;
+  --mustard: #d9a441;
+  --ivory: #f2ebdb;
+  --linen: #e7dcc4;
+  --bronze: #7a5e12; /* "gold" for text on ivory: 5.3:1 */
+  --ink: #1d1b16;
+  --muted: #5c5546;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-emerald: var(--emerald);
+  --color-night: var(--night);
+  --color-moss: var(--moss);
+  --color-gold: var(--gold);
+  --color-mustard: var(--mustard);
+  --color-ivory: var(--ivory);
+  --color-linen: var(--linen);
+  --color-bronze: var(--bronze);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --font-display: "Gambarino", Georgia, serif;
+  --font-sans: "General Sans", system-ui, sans-serif;
+  --font-urdu: var(--font-gulzar);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--ivory);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: "General Sans", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: "Gambarino", Georgia, serif;
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--night);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* The mehrab: a pointed arch, same silhouette as the logo. Used as an image
+   mask across the site. objectBoundingBox units so it scales to any box. */
+.arch {
+  clip-path: url(#mehrab);
+}
+
+.arch-soft {
+  border-radius: 999px 999px 0 0;
+}
+
+/* Curtain: hidden at first paint for returning visitors (set in <head>). */
+.no-intro [data-curtain] {
+  visibility: hidden;
+}
+
+/* Text that rolls up to a copy of itself on hover. */
+.roll {
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: top;
+}
+.roll > span {
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.roll > span::after {
+  content: attr(data-text);
+  display: block;
+  position: absolute;
+}
+.roll > span {
+  position: relative;
+}
+.roll > span::after {
+  top: 100%;
+  left: 0;
+}
+:is(a, button):hover > .roll > span,
+.roll:hover > span {
+  transform: translateY(-100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .roll > span {
+    transition: none;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Hidden until GSAP picks them up; visible straight away without JS or with
+   reduced motion. */
+.js-motion [data-reveal] {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-motion [data-reveal] {
+    opacity: 1 !important;
+  }
+}
+
+.jali-bg {
+  background-image: url("/jali.svg");
+  background-size: 120px 120px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    transform 0.25s;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn-gold {
+  background: var(--gold);
+  color: var(--night);
+}
+.btn-gold:hover {
+  background: #d8b55c;
+}
+.btn-line {
+  border: 1px solid currentColor;
+}
+.btn-line:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+.btn-emerald {
+  background: var(--emerald);
+  color: var(--ivory);
+}
+.btn-emerald:hover {
+  background: var(--moss);
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid #cbbf9f;
+  background: #fbf8f1;
+  padding: 0.7rem 0.9rem;
+  font-size: 1rem;
+}
+.field:focus {
+  outline: 2px solid var(--gold);
+  border-color: transparent;
 }

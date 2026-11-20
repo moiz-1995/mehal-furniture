@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "project": {
+    "name": "mehal-furniture",
+    "productType": null,
+    "stack": [
+      "nextjs",
+      "react",
+      "tailwind-v4"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "src/app/globals.css"
+    ],
+    "components": [],
+    "assets": [],
+    "instructions": [
+      "AGENTS.md"
+    ]
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "--muted": {
+        "value": "#5c5546",
+        "source": "src/app/globals.css"
+      },
+      "--color-emerald": {
+        "value": "var(--emerald)",
+        "source": "src/app/globals.css"
+      },
+      "--color-night": {
+        "value": "var(--night)",
+        "source": "src/app/globals.css"
+      },
+      "--color-moss": {
+        "value": "var(--moss)",
+        "source": "src/app/globals.css"
+      },
+      "--color-gold": {
+        "value": "var(--gold)",
+        "source": "src/app/globals.css"
+      },
+      "--color-mustard": {
+        "value": "var(--mustard)",
+        "source": "src/app/globals.css"
+      },
+      "--color-ivory": {
+        "value": "var(--ivory)",
+        "source": "src/app/globals.css"
+      },
+      "--color-linen": {
+        "value": "var(--linen)",
+        "source": "src/app/globals.css"
+      },
+      "--color-bronze": {
+        "value": "var(--bronze)",
+        "source": "src/app/globals.css"
+      },
+      "--color-ink": {
+        "value": "var(--ink)",
+        "source": "src/app/globals.css"
+      },
+      "--color-muted": {
+        "value": "var(--muted)",
+        "source": "src/app/globals.css"
+      }
+    },
+    "typography": {
+      "--font-display": {
+        "value": "var(--font-cormorant)",
+        "source": "src/app/globals.css"
+      },
+      "--font-sans": {
+        "value": "var(--font-manrope)",
+        "source": "src/app/globals.css"
+      },
+      "--font-urdu": {
+        "value": "var(--font-gulzar)",
+        "source": "src/app/globals.css"
+      }
+    },
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {},
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [],
+    "avoid": [
+      "Gold text on ivory (fails contrast); use bronze #7a5e12",
+      "Cormorant/Manrope (replaced)",
+      "Paid assets or APIs (zero budget)"
+    ]
+  },
+  "decisions": [
+    {
+      "date": "2026-11-20",
+      "decision": "Modern palace direction: Gambarino (display) + General Sans (text) from Fontshare; bottle green / gold / ivory; mehrab arch as the recurring mask and page-transition curtain; GSAP + Lenis motion (doorway zoom hero, velocity marquee, word-lit statement, collection blinds after Floema, disc-reveal start list and image-reveal lens adapted from 21st, horizontal showroom rail, gold cursor).",
+      "source": "user asked for better fonts, more animation and transitions, less generic"
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "design.colorMode:light",
+      "source": "src/app/globals.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/app/globals.css"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    },
+    {
+      "fact": "project.stack:nextjs",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v4",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-11-19T23:59:09.752Z"
+}
